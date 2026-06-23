@@ -7,6 +7,9 @@ API backend para resolver a dor de priorizacao diaria, foco e acompanhamento de 
 - Alertas de atraso e sobrecarga
 - Visao consolidada de tarefas por impacto
 - Base para autenticacao, auditoria e historico
+- Cadastro e consulta de tarefas
+- Atualizacao de status
+- Dashboard com resumo de foco
 
 ## Stack
 - Java 21
@@ -19,8 +22,24 @@ API backend para resolver a dor de priorizacao diaria, foco e acompanhamento de 
 ## Estrutura
 ```text
 src/main/java/com/jv/productivityguard
-  health/
+  config/
+  dashboard/
+  exception/
+  task/
 ```
+
+## Endpoints
+- `GET /api/health`
+- `GET /api/tasks`
+- `POST /api/tasks`
+- `PATCH /api/tasks/{id}/status`
+- `GET /api/dashboard`
+
+## Regras
+- tarefas novas começam como `TODO`
+- prioridade influencia a fila de trabalho
+- tarefas vencidas e bloqueadas reduzem o foco
+- o dashboard consolida o estado operacional do dia
 
 ## Como evoluir
 1. adicionar dominio de tarefas e metas
