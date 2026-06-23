@@ -1,15 +1,22 @@
 # FocusPilot API
 
-API backend para resolver a dor de priorizacao diaria, foco e acompanhamento de tarefas. O objetivo e ajudar pessoas e equipes a decidir o que fazer agora com base em urgencia, prazo, carga de trabalho e risco.
+API backend para priorizacao diaria, acompanhamento de tarefas e reducao de sobrecarga operacional.
 
-## Proposta
-- Prioridade diaria automatizada
-- Alertas de atraso e sobrecarga
-- Visao consolidada de tarefas por impacto
-- Base para autenticacao, auditoria e historico
-- Cadastro e consulta de tarefas
-- Atualizacao de status
-- Dashboard com resumo de foco
+## Objetivo
+O sistema organiza tarefas por urgencia, prazo e risco, permitindo que o usuario entenda o que deve ser feito agora e o que pode ser adiado.
+
+## Problema atendido
+- tarefas importantes se perdem na rotina
+- prioridades mudam sem visibilidade
+- prazos estouram sem alertas claros
+- equipes precisam de um resumo rapido do foco do dia
+
+## Escopo funcional
+- autenticacao com JWT
+- cadastro e listagem de tarefas
+- atualizacao de status
+- dashboard com foco do dia
+- indicador de atraso e sobrecarga
 
 ## Stack
 - Java 21
@@ -18,10 +25,50 @@ API backend para resolver a dor de priorizacao diaria, foco e acompanhamento de 
 - Spring Data JPA
 - JWT
 - OpenAPI
-- PostgreSQL
-- H2 para testes
+- PostgreSQL em producao
+- H2 em testes
 
-## Estrutura
+## Regras de negocio
+- tarefas novas comecam como `TODO`
+- prioridade influencia a fila de trabalho
+- tarefas vencidas reduzem o foco
+- o dashboard resume estado operacional, atraso e carga
+
+## Credenciais de demo
+- email: `demo@focuspilot.dev`
+- senha: `focus123`
+
+## Variaveis de ambiente
+Use `.env.example` como base para:
+- `DATABASE_URL`
+- `DATABASE_USERNAME`
+- `DATABASE_PASSWORD`
+- `JWT_SECRET`
+- `JWT_EXPIRATION_MINUTES`
+
+## Como executar
+1. suba o PostgreSQL com `docker compose up -d`
+2. configure as variaveis de ambiente
+3. execute `mvn spring-boot:run`
+
+## Como testar
+```bash
+mvn test
+```
+
+## Documentacao da API
+- Swagger UI: `GET /swagger-ui/index.html`
+- OpenAPI JSON: `GET /v3/api-docs`
+
+## Endpoints principais
+- `GET /api/health`
+- `POST /api/auth/login`
+- `GET /api/tasks`
+- `POST /api/tasks`
+- `PATCH /api/tasks/{id}/status`
+- `GET /api/dashboard`
+
+## Estrutura do projeto
 ```text
 src/main/java/com/jv/productivityguard
   auth/
@@ -33,28 +80,15 @@ src/main/java/com/jv/productivityguard
   user/
 ```
 
-## Endpoints
-- `GET /api/health`
-- `POST /api/auth/login`
-- `GET /api/tasks`
-- `POST /api/tasks`
-- `PATCH /api/tasks/{id}/status`
-- `GET /api/dashboard`
-- `GET /swagger-ui/index.html`
+## Decisoes tecnicas
+- controllers finos
+- regras concentradas em services
+- DTOs para entrada e saida
+- tratamento centralizado de erros
+- persistencia relacional com UUID para identificadores publicos
 
-## Regras
-- tarefas novas começam como `TODO`
-- prioridade influencia a fila de trabalho
-- tarefas vencidas e bloqueadas reduzem o foco
-- o dashboard consolida o estado operacional do dia
-- o login autentica o usuario `demo@focuspilot.dev` com a senha `focus123`
-- em producao o backend usa PostgreSQL; em testes usa H2
-
-## Como evoluir
-1. adicionar dominio de tarefas e metas
-2. adicionar service layer com regras de prioridade
-3. adicionar JWT e controle por usuario
-4. adicionar testes de integracao e documentacao OpenAPI
-
-## LinkedIn
-Projeto ideal para demonstrar engenharia de software aplicada a produtividade real, com foco em decisao, prioridade e acompanhamento.
+## Evolucao prevista
+- metas semanais
+- historico de produtividade
+- filtros por projeto e contexto
+- notificacoes de atraso
