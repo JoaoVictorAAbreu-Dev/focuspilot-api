@@ -24,10 +24,13 @@ API backend para resolver a dor de priorizacao diaria, foco e acompanhamento de 
 ## Estrutura
 ```text
 src/main/java/com/jv/productivityguard
+  auth/
   config/
   dashboard/
   exception/
+  security/
   task/
+  user/
 ```
 
 ## Endpoints
@@ -44,7 +47,8 @@ src/main/java/com/jv/productivityguard
 - prioridade influencia a fila de trabalho
 - tarefas vencidas e bloqueadas reduzem o foco
 - o dashboard consolida o estado operacional do dia
-- o login emite JWT para evolucao da seguranca
+- o login autentica o usuario `demo@focuspilot.dev` com a senha `focus123`
+- em producao o backend usa PostgreSQL; em testes usa H2
 
 ## Como evoluir
 1. adicionar dominio de tarefas e metas
@@ -54,4 +58,3 @@ src/main/java/com/jv/productivityguard
 
 ## LinkedIn
 Projeto ideal para demonstrar engenharia de software aplicada a produtividade real, com foco em decisao, prioridade e acompanhamento.
-

@@ -2,23 +2,23 @@ spring:
   application:
     name: focuspilot-api
   datasource:
-    url: jdbc:h2:mem:focuspilot;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/focuspilot}
+    username: ${DATABASE_USERNAME:focuspilot}
+    password: ${DATABASE_PASSWORD:focuspilot}
+    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: update
     properties:
       hibernate:
         format_sql: true
-  h2:
-    console:
-      enabled: true
+  sql:
+    init:
+      mode: never
 server:
   port: 8080
 app:
   security:
     jwt:
-      secret: "focuspilot-development-secret-focuspilot-development-secret"
-      expiration-minutes: 120
+      secret: ${JWT_SECRET:focuspilot-dev-secret-key-please-change-me}
+      expiration-minutes: ${JWT_EXPIRATION_MINUTES:120}
