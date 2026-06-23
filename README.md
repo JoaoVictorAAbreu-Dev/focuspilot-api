@@ -1,4 +1,4 @@
-# Productivity Guard API
+# FocusPilot API
 
 API backend para resolver a dor de priorizacao diaria, foco e acompanhamento de tarefas. O objetivo e ajudar pessoas e equipes a decidir o que fazer agora com base em urgencia, prazo, carga de trabalho e risco.
 
@@ -30,3 +30,4 @@ src/main/java/com/jv/productivityguard
 
 ## LinkedIn
 Projeto ideal para demonstrar engenharia de software aplicada a produtividade real, com foco em decisao, prioridade e acompanhamento.
+

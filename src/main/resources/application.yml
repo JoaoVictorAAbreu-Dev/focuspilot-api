@@ -1,3 +1,4 @@
 spring:
   application:
-    name: productivity-guard-api
+    name: focuspilot-api
+
