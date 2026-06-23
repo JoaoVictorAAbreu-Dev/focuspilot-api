@@ -17,3 +17,8 @@ spring:
       enabled: true
 server:
   port: 8080
+app:
+  security:
+    jwt:
+      secret: "focuspilot-development-secret-focuspilot-development-secret"
+      expiration-minutes: 120

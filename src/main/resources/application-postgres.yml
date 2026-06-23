@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/focuspilot
+    driver-class-name: org.postgresql.Driver
+    username: ${POSTGRES_USER:focuspilot}
+    password: ${POSTGRES_PASSWORD:focuspilot}
+  jpa:
+    hibernate:
+      ddl-auto: update

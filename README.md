@@ -16,6 +16,8 @@ API backend para resolver a dor de priorizacao diaria, foco e acompanhamento de 
 - Spring Boot
 - Spring Security
 - Spring Data JPA
+- JWT
+- OpenAPI
 - PostgreSQL
 - H2 para testes
 
@@ -30,16 +32,19 @@ src/main/java/com/jv/productivityguard
 
 ## Endpoints
 - `GET /api/health`
+- `POST /api/auth/login`
 - `GET /api/tasks`
 - `POST /api/tasks`
 - `PATCH /api/tasks/{id}/status`
 - `GET /api/dashboard`
+- `GET /swagger-ui/index.html`
 
 ## Regras
 - tarefas novas começam como `TODO`
 - prioridade influencia a fila de trabalho
 - tarefas vencidas e bloqueadas reduzem o foco
 - o dashboard consolida o estado operacional do dia
+- o login emite JWT para evolucao da seguranca
 
 ## Como evoluir
 1. adicionar dominio de tarefas e metas
